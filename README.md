@@ -1,6 +1,6 @@
 # Chance
 
-Create chance from decimal score
+Create chance from decimal scoring
 
 ### How to use?
 

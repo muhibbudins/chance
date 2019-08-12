@@ -1,7 +1,7 @@
 {
   "name": "zero-chance",
   "version": "0.1.0",
-  "description": "Create chance from decimal score",
+  "description": "Create chance from decimal scoring",
   "main": "/src/index.js",
   "lib": "ZeroChance",
   "npmName": "zero-chance",
