@@ -33,6 +33,20 @@ const config = [
 ];
 
 describe('Benchmark', () => {
+  it('Should show detail on generate', () => {
+    const result = Chance(config, {
+      detail: true
+    });
+
+    console.log(
+      JSON.stringify(
+        result,
+        false,
+        2
+      )
+    );
+  });
+
   it('Test with 10.000.000 operation', async (done) => {
     let count = [
       0,

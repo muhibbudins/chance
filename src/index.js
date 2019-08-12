@@ -1,23 +1,21 @@
-const Chance = options => {
-  if (typeof options !== 'object') {
+const Chance = (weights, options) => {
+  if (typeof weights !== 'object') {
     throw Error(
       'Only single Array with contents of object allowed as parameter'
     );
   }
 
-  if (options.length === 0) {
+  if (weights.length === 0) {
     throw Error('Cannot operate with no configuration for weight');
   }
 
   const tempWeight = [];
-  const tempAction = [];
 
-  options.map(({ weight, action }) => {
+  weights.map(({ weight }) => {
     tempWeight.push(weight);
-    tempAction.push(action);
   });
 
-  const getRandom = tempWeight => {
+  const calculate = tempWeight => {
     const temp = [],
       rand = Math.random();
     let index,
@@ -30,10 +28,16 @@ const Chance = options => {
 
     for (index = 0; index < temp.length && rand >= temp[index]; index++);
 
+    if (options && options.detail) {
+      return Object.assign(weights[index], {
+        index: index
+      });
+    }
+
     return index;
   };
 
-  return getRandom(tempWeight);
+  return calculate(tempWeight);
 };
 
 export default Chance;
