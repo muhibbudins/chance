@@ -1,6 +1,6 @@
 {
   "name": "zero-chance",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Give you a result from random calculation by decimal scoring",
   "main": "/src/index.js",
   "lib": "ZeroChance",
