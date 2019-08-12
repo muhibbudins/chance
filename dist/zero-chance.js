@@ -86,27 +86,49 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var Chance = function Chance(options) {
-  if ((typeof options === 'undefined' ? 'undefined' : _typeof(options)) !== 'object') {
+/**
+ * Chance
+ *
+ * Give you a result from random calculation by decimal scoring
+ *
+ * @param {Array} weights List of all object with "weight" parameter
+ * @param {*} options Option to show detail or not
+ */
+var Chance = function Chance(weights, options) {
+  /**
+   * Prevent not Array given as weight
+   */
+  if ((typeof weights === 'undefined' ? 'undefined' : _typeof(weights)) !== 'object') {
     throw Error('Only single Array with contents of object allowed as parameter');
   }
 
-  if (options.length === 0) {
+  /**
+   * Prevent zero weight on parameter
+   */
+  if (weights.length === 0) {
     throw Error('Cannot operate with no configuration for weight');
   }
 
+  /**
+   * Temporary Weight
+   */
   var tempWeight = [];
-  var tempAction = [];
 
-  options.map(function (_ref) {
-    var weight = _ref.weight,
-        action = _ref.action;
+  /**
+   * Create stack of all weight value (ex. 3.20, 0.0001 etc.)
+   */
+  weights.map(function (_ref) {
+    var weight = _ref.weight;
 
     tempWeight.push(weight);
-    tempAction.push(action);
   });
 
-  var getRandom = function getRandom(tempWeight) {
+  /**
+   * Calculation process
+   *
+   * @param {Array} tempWeight Stack of all weight value
+   */
+  var calculate = function calculate(tempWeight) {
     var temp = [],
         rand = Math.random();
     var index = void 0,
@@ -119,10 +141,22 @@ var Chance = function Chance(options) {
 
     for (index = 0; index < temp.length && rand >= temp[index]; index++) {}
 
+    /**
+     * Send detail if enabled in option
+     */
+    if (options && options.detail) {
+      return Object.assign(weights[index], {
+        index: index
+      });
+    }
+
     return index;
   };
 
-  return getRandom(tempWeight);
+  /**
+   * Return result
+   */
+  return calculate(tempWeight);
 };
 
 exports.default = Chance;
