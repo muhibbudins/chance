@@ -28,7 +28,9 @@
     "umd",
     "template",
     "es6 library",
-    "library"
+    "library",
+    "chance",
+    "probability"
   ],
   "author": "Muhibbudin Suretno <muhibbudinsuretno1@gmail.com>",
   "license": "MIT",
