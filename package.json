@@ -49,6 +49,6 @@
     "mocha": "7.1.0",
     "uglifyjs-webpack-plugin": "1.3.0",
     "webpack": "3.12.0",
-    "yargs": "15.2.0"
+    "yargs": "15.3.0"
   }
 }
